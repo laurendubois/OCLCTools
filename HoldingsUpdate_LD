@@ -68,4 +68,4 @@ errors_df = pd.DataFrame(errors_list)
 responses_df.to_csv('HoldingsUpdate_results.csv', index=False)
 errors_df.to_csv('HoldingsUpdate_errors.csv', index=False)
 
-print('FINISHED')
+print('You did it!')
