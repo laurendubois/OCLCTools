@@ -1,5 +1,6 @@
 import json
 import pandas as pd
+# removed import os
 from bookops_worldcat import WorldcatAccessToken, MetadataSession
 
 
@@ -23,16 +24,10 @@ def get_token():
 
 # Pandas can read a gsheet directly
 # TO DO: Swap middle concat to a new sheet
-# gsheet = pd.read_csv(
-   # "https://docs.google.com/spreadsheets/d/"
-   # + "1INovWFSXIBgxKJIrixBD-LWIb_2DKZ6LhlB2P4Gx3Qc"
-   # + "/export?gid=0&format=csv"
-# )
-# testing LD
 gsheet = pd.read_csv(
    "https://docs.google.com/spreadsheets/d/"
-   + "1T4nkQJpJ06YHVEYlzFO620k5yE9NX1mrPbcRPn89cPM"
-   + "/export?gid=0&format=csv",
+   + "1INovWFSXIBgxKJIrixBD-LWIb_2DKZ6LhlB2P4Gx3Qc"
+   + "/export?gid=0&format=csv"
 )
 
 # Creates a list of oclc IDs in memory to iterate over
@@ -73,4 +68,4 @@ errors_df = pd.DataFrame(errors_list)
 responses_df.to_csv('HoldingsUpdate_results.csv', index=False)
 errors_df.to_csv('HoldingsUpdate_errors.csv', index=False)
 
-print('Complete.')
+print('FINISHED')
