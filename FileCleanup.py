@@ -21,7 +21,7 @@ with open(input_file_path, 'r') as infile, open(output_file_path, 'w') as outfil
             # Find and extract the OCoLC number in the second part
             ocolc_part = re.search(r'\(OCoLC\)(\w*\d+)', parts[1])
             if ocolc_part:
-                ocolc_number = ocolc_part.group(1).strip().strip('"').lstrip('ocn').lstrip('on')
+                ocolc_number = ocolc_part.group(1).strip().strip('"').lstrip('ocn').lstrip('on') # does not account for ocm, but when added turns IDs to floats
             else:
                 ocolc_number = "0"
             # Write the processed line to the output file
