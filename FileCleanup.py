@@ -2,13 +2,13 @@ import re
 
 # Define the path to your input and output files
 input_file_path = 'C:/Users/lmd8/OneDrive - Rice University/Desktop/testing/ALMA-merged.tsv'
-output_file_path = 'C:/Users/lmd8/OneDrive - Rice University/Desktop/testing/ALMA-merged-scrubbed.tsv'
+output_file_path = 'C:/Users/lmd8/OneDrive - Rice University/Desktop/testing/ALMA-cleaned.txt'
 
 # Open the input file for reading and the output file for writing
 with open(input_file_path, 'r') as infile, open(output_file_path, 'w') as outfile:
     # Iterate through each line in the input file
     for index, line in enumerate(infile):
-        # Skip processing the first row and copy it directly to the output file
+        # Copy the first row directly to the output file
         if index == 0:
             outfile.write(line)
             continue
@@ -19,14 +19,15 @@ with open(input_file_path, 'r') as infile, open(output_file_path, 'w') as outfil
             # Extract the first part (number starting with "991...")
             first_part = parts[0].strip().strip('"')
             # Find and extract the OCoLC number in the second part
-            ocolc_part = re.search(r'\(OCoLC\)(\w*\d+)', parts[1])  # chatgpt
+            ocolc_part = re.search(r'\(OCoLC\)(\w*\d+)', parts[1])
             if ocolc_part:
-                ocolc_number = ocolc_part.group(1).strip().strip('"').lstrip('ocn').lstrip('on')
-                # does not account for ocm, but when added turns IDs to floats, not sure how to solve that
+                ocolc_number = re.sub('[^0-9]', '', ocolc_part.group(1))  # Strips all non-digit characters
+                if not ocolc_number:
+                    ocolc_number = "0"  # Insert a zero if there are no digits
             else:
                 ocolc_number = "0"
             # Write the processed line to the output file
-            outfile.write(f'"{first_part}"\t"{ocolc_number}"\n')
+            outfile.write(f'{first_part}\t{ocolc_number}\n')  # Writing without quotes
         else:
             # If the line does not contain two parts, write it directly as-is to the output file
             outfile.write(line)
