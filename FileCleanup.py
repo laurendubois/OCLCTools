@@ -1,8 +1,8 @@
 import re
 
 # Define the path to your input and output files
-input_file_path = 'C:/Users/lmd8/OneDrive - Rice University/Desktop/testing/ART.txt'
-output_file_path = 'C:/Users/lmd8/OneDrive - Rice University/Desktop/testing/ART_v2.txt'
+input_file_path = 'C:/Users/lmd8/OneDrive - Rice University/Desktop/testing/ALMA-merged.tsv'
+output_file_path = 'C:/Users/lmd8/OneDrive - Rice University/Desktop/testing/ALMA-merged-scrubbed.tsv'
 
 # Open the input file for reading and the output file for writing
 with open(input_file_path, 'r') as infile, open(output_file_path, 'w') as outfile:
@@ -19,15 +19,16 @@ with open(input_file_path, 'r') as infile, open(output_file_path, 'w') as outfil
             # Extract the first part (number starting with "991...")
             first_part = parts[0].strip().strip('"')
             # Find and extract the OCoLC number in the second part
-            ocolc_part = re.search(r'\(OCoLC\)(\w*\d+)', parts[1])
+            ocolc_part = re.search(r'\(OCoLC\)(\w*\d+)', parts[1])  # chatgpt
             if ocolc_part:
-                ocolc_number = ocolc_part.group(1).strip().strip('"').lstrip('ocn').lstrip('on') # does not account for ocm, but when added turns IDs to floats
+                ocolc_number = ocolc_part.group(1).strip().strip('"').lstrip('ocn').lstrip('on')
+                # does not account for ocm, but when added turns IDs to floats, not sure how to solve that
             else:
                 ocolc_number = "0"
             # Write the processed line to the output file
             outfile.write(f'"{first_part}"\t"{ocolc_number}"\n')
         else:
-            # If the line does not contain two parts, write it directly to the output file
+            # If the line does not contain two parts, write it directly as-is to the output file
             outfile.write(line)
 
-print("Processing complete. Check the output file for results.")
+print("Finished - check output files.")
