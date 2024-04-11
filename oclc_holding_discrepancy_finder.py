@@ -7,6 +7,7 @@ output_dir = Path("C:/Users/lmd8/OneDrive - Rice University/Desktop/testing/")
 
 print("Starting...")
 
+
 # Function to normalize identifier by removing non-numeric characters and correcting leading zeros
 def normalize_identifier(identifier):
     # Remove non-numeric characters
@@ -16,11 +17,12 @@ def normalize_identifier(identifier):
     # Ensure all identifiers have the same length by padding with leading zeros
     return identifier.zfill(12)  # Assuming maximum length is 12 characters
 
+
 # Read the files
 # Added parameter \t due to errors, then added dtype after errors
 try:
-    ALMAdf = pd.read_csv(input_dir / "ALMA-merged-scrubbed.txt", sep='\t', dtype='unicode')
-    OCLCdf = pd.read_csv(input_dir / "OCLC-merged-original.txt", sep='\t', dtype='unicode')
+    ALMAdf = pd.read_csv(input_dir / "ALMA-cleaned2.txt", sep='\t', dtype='unicode')
+    OCLCdf = pd.read_csv(input_dir / "OCLC-merged2.txt", sep='\t', dtype='unicode')
 except FileNotFoundError as e:
     print("Error: Input file(s) not found.")
     exit()  # Terminate script
@@ -41,8 +43,8 @@ print("\nExample data values being compared in 'NotInAlma' dataframe:")
 print(NotInAlma[['Normalized_ID', '001']])
 
 # Save results to TXT (TSV)
-NotInOCLC.to_csv(output_dir / "NotInOCLC.txt", sep='\t', index=False, columns=['001', '035$a'])
-NotInAlma.to_csv(output_dir / "NotInALMA.txt", sep='\t', index=False, columns=['001'])
+NotInOCLC.to_csv(output_dir / "NotInOCLC2.txt", sep='\t', index=False, columns=['001', '035$a'])
+NotInAlma.to_csv(output_dir / "NotInALMA2.txt", sep='\t', index=False, columns=['001'])
 
 # Print completion message
 print("Finished - check output files.")
