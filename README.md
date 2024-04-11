@@ -23,7 +23,7 @@ Alma files look like -
   
   "991021576119705251"	"(TxHR)1976644-01rice_inst;(SIRSI)1976644;(OCoLC)58602699"
   
-Run filecleanup.py on Alma files
+Run filecleanup.py on Alma files // now oclc_number_normalizer
 
 Now Alma files look like -
 
@@ -35,4 +35,4 @@ Now Alma files look like -
   
   "991021576119705251"	"58602699"
   
-Run OCLC-simple-reclamation_LD_leadingzeros_alma.py
+Run OCLC-simple-reclamation_LD_leadingzeros_alma.py // oclc_holding_discrepancy_finder.py
