@@ -52,13 +52,13 @@ with MetadataSession(authorization=token, agent="lmd8@rice.edu") as session:
 with open('oclc_list_output.txt', 'w') as results_file:
     for item in responses_list:
         results_file.write(
-            f"{item['OCLCID']}|{item['holdingCurrentlySet']}\n"
+            f"\"{item['OCLCID']}\"|{item['holdingCurrentlySet']}\n"
         )
 
 with open('oclc_list_errors.txt', 'w') as errors_file:
     for item in errors_list:
         errors_file.write(
-            f"OCLCID: {item['OCLCID']}|Error: {item['Error']}\n"
+            f"OCLCID: \"{item['OCLCID']}\"|Error: {item['Error']}\n"
         )
 
-print('Output files saved as oclc_status_output.txt and oclc_status_errors.txt.')
+print('Process completed. Output files saved as holding_status_output.txt and holding_status_errors.txt.')
