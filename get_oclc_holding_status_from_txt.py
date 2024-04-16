@@ -62,4 +62,4 @@ with open('oclc_list_errors.txt', 'w') as errors_file:
             f"OCLCID: \"{item['OCLCID']}\"|Error: {item['Error']}\n"
         )
 
-print('Process completed. Output files saved as holding_status_output.txt and holding_status_errors.txt.')
+print('Output files saved as oclc_list_output.txt and oclc_list_errors.txt.')
