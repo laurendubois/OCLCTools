@@ -2,7 +2,10 @@ import json
 import pandas as pd
 from bookops_worldcat import WorldcatAccessToken, MetadataSession
 
-# This will read a Google Sheet list and tell us our current OCLC holding status using the API
+# This will read a Google Sheet list and report current OCLC holding status using the API
+# Output is MMS ID / OCLC ID pairs
+
+
 # Defines a method of getting tokens with BookOps
 # Separate creds file for security
 def get_token():
@@ -57,13 +60,13 @@ with MetadataSession(authorization=token, agent="lmd8@rice.edu") as session:
 with open('holding_status_output.txt', 'w') as results_file:
     for item in responses_list:
         results_file.write(
-            f"OCLCID: {item['OCLCID']} | MMSID: {item['MMSID']} | Holding: {item['holdingCurrentlySet']}\n"
+            f"OCLCID: {item['OCLCID']}|MMSID: {item['MMSID']}|Holding: {item['holdingCurrentlySet']}\n"
         )
 
 with open('holding_status_errors.txt', 'w') as errors_file:
     for item in errors_list:
         errors_file.write(
-            f"OCLCID: {item['OCLCID']} | MMSID: {item['MMSID']} | Error: {item['Error']}\n"
+            f"OCLCID: {item['OCLCID']}|MMSID: {item['MMSID']}|Error: {item['Error']}\n"
         )
 
-print('Process completed. Output files saved as holding_status_output.txt and holding_status_errors.txt.')
+print('Output files saved as holding_status_output.txt and holding_status_errors.txt.')
