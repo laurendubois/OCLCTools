@@ -4,13 +4,14 @@ from bookops_worldcat import WorldcatAccessToken, MetadataSession
 
 # This reads a txt of oclc ids and returns our holding status
 
-# Defines a method of getting tokens with BookOps
-# Separate creds file for security
+
 def get_token():
+    """Defines a method of getting tokens with BookOps"""
+    # Separate creds file for security
     creds_fh = "C:/Users/lmd8/PycharmProjects/OCLCTools/my_wskey.json"
     with open(creds_fh, "r") as file:
         creds = json.load(file)
-        token = WorldcatAccessToken(
+        token: WorldcatAccessToken = WorldcatAccessToken(
             key=creds["key"],
             secret=creds["secret"],
             scopes=creds["scopes"],
