@@ -1,6 +1,8 @@
 import pandas as pd
 from pathlib import Path
 
+# Compares two files to report what is not in both
+
 # Define input and output directories
 input_dir = Path("C:/Users/lmd8/OneDrive - Rice University/Desktop/testing/")
 output_dir = Path("C:/Users/lmd8/OneDrive - Rice University/Desktop/testing/")
